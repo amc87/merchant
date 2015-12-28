@@ -4,7 +4,9 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items
   # GET /order_items.json
-  
+  def index
+    @order_items = OrderItem.all
+  end
 
   # GET /order_items/1
   # GET /order_items/1.json
@@ -51,7 +53,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item.destroy
     respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Order item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +75,6 @@ class OrderItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
-      params.require(:order_item).permit(:product_id, :order_id, :quantity)
+      params.require(:order_item).permit(:product_id, :order_id, :quantity, :status)
     end
 
